@@ -13,6 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libsqlite3-dev
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -27,8 +32,21 @@ jobs:
     - name: Set up ChromeDriver
       uses: nanasess/setup-chromedriver@v2
 
+    - name: Configure bundler
+      run: |
+        bundle config set --local path 'vendor/bundle'
+        bundle config set --local without 'development test'
+
+    - name: Cache Ruby gems
+      uses: actions/cache@v3
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
     - name: Install dependencies
-      run: bundle install
+      run: bundle install --jobs 4 --retry 3
 
     - name: Run tests
       run: bundle exec cucumber --format json --out reports/cucumber.json
