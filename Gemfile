@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'cucumber'
+gem 'watir'
+gem 'page-object'
+gem 'rspec'
+gem 'webdrivers'
+gem 'pry'
+gem 'report_builder', '1.9'
+gem 'cucumber-reports'
