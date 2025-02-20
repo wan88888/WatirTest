@@ -45,9 +45,10 @@ jobs:
     - name: Publish to Cucumber Reports
       if: always()
       id: publish-report
-      uses: cucumber/publish-action@v1.1.0
+      uses: deblockt/cucumber-report-annotations-action@v1.7
       with:
-        token: ${{ secrets.CUCUMBER_PUBLISH_TOKEN }}
+        access-token: ${{ secrets.Cucumber_TOKEN }}
+        path: reports/cucumber.json
         results: reports/cucumber.json
 
     - name: Send Report to Feishu
