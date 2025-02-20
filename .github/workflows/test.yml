@@ -35,7 +35,6 @@ jobs:
     - name: Configure bundler
       run: |
         bundle config set --local path 'vendor/bundle'
-        bundle config set --local without 'development test'
         bundle lock --add-platform x86_64-linux
 
     - name: Cache Ruby gems
