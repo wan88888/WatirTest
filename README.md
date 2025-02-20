@@ -1,6 +1,6 @@
 # Web自动化测试框架
 
-这是一个基于Watir和Cucumber的Web自动化测试框架，采用Page Object模式设计，支持BDD(行为驱动开发)测试方法。
+这是1个基于Watir和Cucumber的Web自动化测试框架,采用POM模式设计，支持BDD测试方法。
 
 ## 项目概述
 
@@ -105,20 +105,7 @@ bundle exec cucumber features/login.feature
 
 ### Cucumber Reports平台
 
-#### 配置
-1. 在`cucumber.yml`中添加报告配置：
-```yaml
-default: --format json --out reports/cucumber.json
-```
-
-2. 在CI/CD流水线中配置报告发布：
-```yaml
-- name: Publish Test Results
-  uses: cucumber/publish-action@v1.1.0
-  with:
-    token: ${{ secrets.CUCUMBER_PUBLISH_TOKEN }}
-    results: reports/cucumber.json
-```
+测试完成后自动生成Cucumber Reports报告链接
 
 #### 使用说明
 1. **查看报告**

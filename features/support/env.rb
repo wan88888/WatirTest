@@ -22,13 +22,15 @@ After do |scenario|
 end
 
 at_exit do
-  ReportBuilder.configure do |config|
+  config = ReportBuilder.configure do |config|
     config.input_path = 'reports/cucumber.json'
     config.report_path = 'reports/cucumber_report'
-    config.report_types = [:html]
+    config.report_types = [:html, :json]
     config.report_title = 'Web Automation Test Results'
     config.include_images = true
     config.additional_info = { 'Project' => 'Web Automation Test' }
+    config.publish_enabled = true
+    config.color = 'brown'
   end
-  ReportBuilder.build_report
+  report_info = ReportBuilder.build_report
 end
